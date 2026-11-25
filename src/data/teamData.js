@@ -4,7 +4,7 @@
 
 export const teamInfo = {
   name: "SMITH WARRIORS",
-  tagline: "Excellence in Unity, Driven by Purpose",
+  tagline: "Where Accuracy Shapes The Builders",
   subtitle: "A collective of passionate individuals united by creativity, dedication, and leadership.",
   description: "We bring together diverse perspectives, skills, and energy to build, inspire, and create lasting impact.",
   logo: "/images/logo.jpg",
