@@ -7,29 +7,53 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #101014;
+    color: #F5F5F7;
   }
 
   body {
-    background-color: #F7F7F4;
-    color: #202124;
+    background-color: #101014;
+    color: #F5F5F7;
     overflow-x: hidden;
   }
 }
 
-/* Custom minimal scrollbar */
+/* Futuristic generative scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F7F7F4;
+  background: #101014;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D3D3CB;
+  background: #20202A;
   border-radius: 9999px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #263B53;
+  background: #8B5CF6;
+}
+
+/* Subtle glowing cyber grid pattern */
+.bg-cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Glow effects */
+.glow-violet {
+  box-shadow: 0 0 35px -5px rgba(139, 92, 246, 0.35);
+}
+
+.glow-blue {
+  box-shadow: 0 0 35px -5px rgba(59, 130, 246, 0.35);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 35px -5px rgba(34, 211, 238, 0.35);
 }

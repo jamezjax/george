@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 export default function MemberCard({ member, onSelect }) {
-  const { id, name, role, image, department, isLeader } = member;
+  const { id, name, role, image, department, isLeader, leaderType } = member;
 
   return (
     <motion.div
@@ -18,15 +18,14 @@ export default function MemberCard({ member, onSelect }) {
           },
         },
       }}
-      className={`group relative flex flex-col bg-white rounded-2xl overflow-hidden border transition-all duration-500 cursor-pointer ${
-        isLeader
-          ? 'border-[#C59B3F]/40 shadow-[0_6px_25px_-5px_rgba(197,155,63,0.15)] hover:shadow-[0_20px_40px_-8px_rgba(197,155,63,0.22)]'
-          : 'border-stone-200/80 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_-6px_rgba(38,59,83,0.12)]'
-      }`}
+      className="group relative flex flex-col bg-[#20202A]/90 rounded-2xl overflow-hidden border border-white/[0.08] hover:border-violet-500/40 shadow-[0_8px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_40px_rgba(139,92,246,0.18)] transition-all duration-500 cursor-pointer backdrop-blur-md"
       onClick={() => onSelect && onSelect(member)}
     >
-      {/* Photo Container: Clean portrait aspect ratio */}
-      <div className="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden">
+      {/* Top Ambient Highlight on Card Hover */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-violet-500 transition-all duration-500" />
+
+      {/* Portrait Container */}
+      <div className="relative w-full aspect-[4/5] bg-[#191920] overflow-hidden">
         <img
           src={image}
           alt={name}
@@ -34,53 +33,49 @@ export default function MemberCard({ member, onSelect }) {
           className="w-full h-full object-cover object-top sm:object-center transition-transform duration-700 ease-out group-hover:scale-105"
         />
 
-        {/* Number badge on top left */}
-        <div className="absolute top-3.5 left-3.5 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full border border-stone-200/60 shadow-sm">
-          <span className="text-[10px] font-bold tracking-widest text-[#263B53] uppercase">
-            {String(id).padStart(2, '0')}
-          </span>
+        {/* Futuristic Node Badge */}
+        <div className="absolute top-3.5 left-3.5 bg-[#101014]/85 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 font-mono text-[10px] text-[#22D3EE] font-bold shadow-sm">
+          NODE {String(id).padStart(2, '0')}
         </div>
 
-        {/* Leadership highlight badge if Captain / Vice Captain */}
+        {/* Leadership Pill if Leader */}
         {isLeader && (
-          <div className="absolute top-3.5 right-3.5 bg-[#202124]/90 backdrop-blur-md px-3 py-1 rounded-full border border-[#C59B3F]/40 shadow-sm">
-            <span className="text-[10px] font-extrabold tracking-widest text-[#C59B3F] uppercase flex items-center gap-1">
-              ★ {role}
-            </span>
+          <div className="absolute top-3.5 right-3.5 bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] text-white text-[9px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full shadow-md font-mono flex items-center gap-1">
+            <span>★</span> {leaderType === 'captain' ? 'CAPTAIN' : 'VICE-CAPTAIN'}
           </div>
         )}
 
-        {/* Subtle hover gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#202124]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        {/* Subtle Cyber Gradient Overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#101014] via-[#101014]/30 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none" />
       </div>
 
       {/* Member Details */}
-      <div className="p-5 flex flex-col justify-between flex-grow bg-white">
+      <div className="p-5 flex flex-col justify-between flex-grow bg-[#20202A]">
         <div>
-          <div className="flex items-center justify-between mb-1">
-            <span className="text-[10px] uppercase tracking-[0.2em] font-semibold text-[#777777]">
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="text-[10px] font-mono uppercase tracking-[0.2em] font-semibold text-[#8B5CF6]">
               {department || "Core Team"}
             </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/60 group-hover:bg-[#22D3EE] transition-colors" />
           </div>
 
-          <h3 className="text-lg sm:text-xl font-bold text-[#202124] tracking-tight group-hover:text-[#263B53] transition-colors duration-200">
+          <h3 className="text-lg sm:text-xl font-bold text-[#F5F5F7] tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-violet-200 group-hover:to-cyan-300 transition-all duration-300">
             {name}
           </h3>
 
-          <p className={`text-xs font-semibold mt-1 tracking-wide ${isLeader ? 'text-[#C59B3F]' : 'text-[#777777]'}`}>
+          <p className="text-xs font-mono font-medium text-[#A1A1AA] mt-1">
             {role}
           </p>
         </div>
 
-        {/* Elegant minimal hairline divider & subtle view affordance */}
-        <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
-          <span className="text-[11px] font-semibold tracking-wider text-[#263B53] uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-1">
-            View Portrait
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
+        {/* Bottom Metadata & View Affordance */}
+        <div className="mt-4 pt-3.5 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
+          <span className="text-[#22D3EE] uppercase tracking-wider opacity-75 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+            Inspect <span>→</span>
           </span>
-          <div className={`w-2 h-2 rounded-full transition-colors duration-300 ${isLeader ? 'bg-[#C59B3F]' : 'bg-stone-300 group-hover:bg-[#C59B3F]'}`} />
+          <span className="text-[#A1A1AA]/60 text-[10px]">
+            ACTIVE
+          </span>
         </div>
       </div>
     </motion.div>
