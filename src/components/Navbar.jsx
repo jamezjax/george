@@ -14,10 +14,8 @@ export default function Navbar({ teamName, logo }) {
   }, []);
 
   const navLinks = [
-    { label: 'Ecosystem', href: '#ecosystem' },
     { label: 'Leadership', href: '#leadership' },
-    { label: 'Collective', href: '#team' },
-    { label: 'Studio Vision', href: '#vision' },
+    { label: 'Team Members', href: '#team' },
   ];
 
   return (
@@ -45,17 +43,11 @@ export default function Navbar({ teamName, logo }) {
           </div>
 
           <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="text-sm sm:text-base font-extrabold tracking-[0.16em] text-[#F5F5F7] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#8B5CF6] group-hover:via-[#3B82F6] group-hover:to-[#22D3EE] transition-all">
-                {teamName}
-              </span>
-              <span className="hidden sm:inline-flex items-center gap-1 text-[9px] font-mono uppercase px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-[#22D3EE]">
-                <span className="w-1 h-1 rounded-full bg-[#22D3EE] animate-pulse" />
-                V4.2
-              </span>
-            </div>
+            <span className="text-sm sm:text-base font-extrabold tracking-[0.16em] text-[#F5F5F7] group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#8B5CF6] group-hover:via-[#3B82F6] group-hover:to-[#22D3EE] transition-all">
+              {teamName}
+            </span>
             <span className="text-[10px] tracking-[0.22em] uppercase text-[#A1A1AA] font-mono -mt-0.5">
-              Generative Art Collective
+              Official Team
             </span>
           </div>
         </a>
@@ -80,7 +72,7 @@ export default function Navbar({ teamName, logo }) {
             href="#team"
             className="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold tracking-wider uppercase rounded-full text-white bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] hover:from-[#7C3AED] hover:to-[#2563EB] shadow-[0_0_20px_rgba(139,92,246,0.35)] hover:shadow-[0_0_25px_rgba(139,92,246,0.55)] transition-all duration-300"
           >
-            <span>Explore Roster</span>
+            <span>Explore Team</span>
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
@@ -128,7 +120,7 @@ export default function Navbar({ teamName, logo }) {
                 onClick={() => setMobileMenuOpen(false)}
                 className="mt-2 text-center py-2.5 rounded-xl bg-gradient-to-r from-[#8B5CF6] to-[#3B82F6] text-white text-xs font-bold tracking-wider uppercase"
               >
-                Explore Roster
+                Explore Team
               </a>
             </div>
           </motion.div>

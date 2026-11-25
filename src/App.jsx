@@ -4,8 +4,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import LeadershipSection from './components/LeadershipSection';
 import TeamSection from './components/TeamSection';
-import GenerativeShowcase from './components/GenerativeShowcase';
-import VisionSection from './components/VisionSection';
 import Footer from './components/Footer';
 import { teamInfo, teamMembers as initialMembers } from './data/teamData';
 
@@ -27,7 +25,7 @@ export default function App() {
 
       {/* Main Flow */}
       <main className="relative z-10">
-        {/* 1. Hero Section (~100vh on desktop) */}
+        {/* 1. Hero Section */}
         <Hero teamInfo={teamInfo} />
 
         {/* 2. Dedicated Leadership Highlight (Captain & Vice-Captain) */}
@@ -37,16 +35,10 @@ export default function App() {
           onSelect={(m) => setSelectedModalMember(m)}
         />
 
-        {/* 3. Specialist Team Members Section (Remaining 6 Members) */}
+        {/* 3. Team Members Section */}
         <TeamSection
           members={members}
         />
-
-        {/* 4. Generative Art & Creator Ecosystem Showcase */}
-        <GenerativeShowcase />
-
-        {/* 5. Manifesto & Vision */}
-        <VisionSection teamInfo={teamInfo} />
       </main>
 
       {/* Footer Section */}
