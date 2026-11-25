@@ -37,7 +37,7 @@ export default function Footer({ teamInfo }) {
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span>NEURAL CLUSTER: ACTIVE</span>
             <span>•</span>
-            <span>NODES: 08</span>
+            <span>NODES: 09</span>
           </div>
           <p className="text-[10px] font-mono text-[#A1A1AA]/60 tracking-wider uppercase">
             © {currentYear} {name}. All Rights Reserved.

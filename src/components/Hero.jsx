@@ -148,7 +148,7 @@ export default function Hero({ teamInfo }) {
             href="#team"
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold tracking-wider uppercase text-[#F5F5F7] bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 hover:border-white/20 backdrop-blur-md transition-all duration-300"
           >
-            <span>The 08 Roster</span>
+            <span>The Collective Roster</span>
           </a>
         </motion.div>
 

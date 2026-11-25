@@ -13,7 +13,7 @@ export const teamInfo = {
   ecosystemMetrics: [
     { label: "Neural Model", value: "SMITH-V4.2" },
     { label: "Precision Rate", value: "99.8%" },
-    { label: "Ecosystem Nodes", value: "08 Core" },
+    { label: "Ecosystem Nodes", value: "09 Core" },
     { label: "Aesthetic Status", value: "Online" },
   ]
 };
@@ -89,6 +89,15 @@ export const teamMembers = [
     name: "Achyuth Rajesh",
     role: "Team Member",
     image: "/images/member-8.jpg",
+    department: "Platform Engineering",
+    isLeader: false,
+    accent: "blue",
+  },
+  {
+    id: 9,
+    name: "K J MadhavU",
+    role: "Team Member",
+    image: "/images/K J MADHAVU.jpg",
     department: "Platform Engineering",
     isLeader: false,
     accent: "blue",
