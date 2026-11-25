@@ -112,12 +112,12 @@ export default function LeadershipSection({ captain, viceCaptain, onSelect }) {
           <div className="absolute top-0 right-0 w-60 h-60 rounded-full bg-[#3B82F6]/15 blur-3xl pointer-events-none" />
 
           {/* Vice-Captain Portrait */}
-          <div className="relative w-full aspect-[16/11] bg-[#20202A] overflow-hidden">
+          <div className="relative w-full aspect-[4/5] bg-[#20202A] overflow-hidden">
             <img
               src={viceCaptain.image}
               alt={viceCaptain.name}
               loading="lazy"
-              className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-106"
+              className="w-full h-full object-cover object-[center_28%] transition-transform duration-700 ease-out group-hover:scale-106"
             />
             {/* Holographic Number */}
             <div className="absolute top-4 left-4 bg-[#101014]/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 font-mono text-[10px] text-[#22D3EE] font-bold">
