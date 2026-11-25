@@ -8,10 +8,10 @@ export default function LeadershipSection({ captain, viceCaptain, onSelect }) {
     <section id="leadership" className="py-20 sm:py-28 px-6 sm:px-8 max-w-7xl mx-auto relative z-10">
       {/* Section Header */}
       <motion.div
-        initial={{ opacity: 0, y: 25 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
         className="flex flex-col items-center text-center mb-14 sm:mb-18"
       >
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-violet-500/10 border border-violet-500/30 text-violet-400 text-[10px] font-mono tracking-widest uppercase font-bold mb-3">
@@ -29,16 +29,17 @@ export default function LeadershipSection({ captain, viceCaptain, onSelect }) {
         <div className="w-16 h-[2px] bg-gradient-to-r from-transparent via-[#8B5CF6] to-transparent mt-5 opacity-70" />
       </motion.div>
 
-      {/* Leadership Grid: 2 Prominent Columns (Captain larger/highlighted, Vice-Captain alongside) */}
+      {/* Leadership Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
         
-        {/* CAPTAIN: Prominent position (7 cols on lg) */}
+        {/* CAPTAIN */}
         <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-7 group relative flex flex-col sm:flex-row bg-[#191920]/90 rounded-3xl overflow-hidden border border-[#8B5CF6]/40 shadow-[0_0_40px_rgba(139,92,246,0.18)] hover:shadow-[0_0_60px_rgba(139,92,246,0.3)] transition-all duration-500 cursor-pointer backdrop-blur-xl"
+          initial={{ opacity: 0, y: 45, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ type: "spring", damping: 26, stiffness: 100 }}
+          whileHover={{ y: -8, transition: { duration: 0.35 } }}
+          className="lg:col-span-7 group relative flex flex-col sm:flex-row bg-[#191920]/90 rounded-3xl overflow-hidden border border-[#8B5CF6]/40 shadow-[0_0_40px_rgba(139,92,246,0.18)] hover:shadow-[0_0_65px_rgba(139,92,246,0.35)] transition-shadow duration-500 cursor-pointer backdrop-blur-xl"
           onClick={() => onSelect && onSelect(captain)}
         >
           {/* Subtle Ambient Glow Behind Captain */}
@@ -50,7 +51,7 @@ export default function LeadershipSection({ captain, viceCaptain, onSelect }) {
               src={captain.image}
               alt={captain.name}
               loading="lazy"
-              className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+              className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-106"
             />
             {/* Holographic Number */}
             <div className="absolute top-4 left-4 bg-[#101014]/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 font-mono text-[10px] text-[#22D3EE] font-bold">
@@ -87,7 +88,7 @@ export default function LeadershipSection({ captain, viceCaptain, onSelect }) {
             </div>
 
             <div className="mt-6 pt-4 border-t border-white/[0.08] flex items-center justify-between">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-[#22D3EE] flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-[#22D3EE] flex items-center gap-1.5 group-hover:translate-x-1.5 transition-transform duration-300">
                 Inspect Portrait <span>→</span>
               </span>
               <span className="text-[10px] font-mono text-[#A1A1AA]">
@@ -97,13 +98,14 @@ export default function LeadershipSection({ captain, viceCaptain, onSelect }) {
           </div>
         </motion.div>
 
-        {/* VICE-CAPTAIN: Prominent Secondary Profile (5 cols on lg) */}
+        {/* VICE-CAPTAIN */}
         <motion.div
-          initial={{ opacity: 0, y: 35 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 group relative flex flex-col bg-[#191920]/90 rounded-3xl overflow-hidden border border-[#3B82F6]/40 shadow-[0_0_35px_rgba(59,130,246,0.15)] hover:shadow-[0_0_55px_rgba(59,130,246,0.28)] transition-all duration-500 cursor-pointer backdrop-blur-xl"
+          initial={{ opacity: 0, y: 45, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ type: "spring", damping: 26, stiffness: 100, delay: 0.12 }}
+          whileHover={{ y: -8, transition: { duration: 0.35 } }}
+          className="lg:col-span-5 group relative flex flex-col bg-[#191920]/90 rounded-3xl overflow-hidden border border-[#3B82F6]/40 shadow-[0_0_35px_rgba(59,130,246,0.15)] hover:shadow-[0_0_60px_rgba(59,130,246,0.3)] transition-shadow duration-500 cursor-pointer backdrop-blur-xl"
           onClick={() => onSelect && onSelect(viceCaptain)}
         >
           {/* Subtle Ambient Glow */}
@@ -115,7 +117,7 @@ export default function LeadershipSection({ captain, viceCaptain, onSelect }) {
               src={viceCaptain.image}
               alt={viceCaptain.name}
               loading="lazy"
-              className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+              className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-106"
             />
             {/* Holographic Number */}
             <div className="absolute top-4 left-4 bg-[#101014]/80 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 font-mono text-[10px] text-[#22D3EE] font-bold">
@@ -151,7 +153,7 @@ export default function LeadershipSection({ captain, viceCaptain, onSelect }) {
             </div>
 
             <div className="mt-6 pt-4 border-t border-white/[0.08] flex items-center justify-between">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-[#3B82F6] flex items-center gap-1.5 group-hover:translate-x-1 transition-transform">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-[#3B82F6] flex items-center gap-1.5 group-hover:translate-x-1.5 transition-transform duration-300">
                 Inspect Portrait <span>→</span>
               </span>
               <span className="text-[10px] font-mono text-[#A1A1AA]">

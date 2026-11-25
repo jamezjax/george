@@ -7,22 +7,28 @@ export default function MemberCard({ member, onSelect }) {
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 35, scale: 0.98 },
+        hidden: { opacity: 0, y: 40, scale: 0.96 },
         visible: {
           opacity: 1,
           y: 0,
           scale: 1,
           transition: {
-            duration: 0.7,
-            ease: [0.215, 0.61, 0.355, 1],
+            type: "spring",
+            damping: 24,
+            stiffness: 110,
           },
         },
       }}
-      className="group relative flex flex-col bg-[#20202A]/90 rounded-2xl overflow-hidden border border-white/[0.08] hover:border-violet-500/40 shadow-[0_8px_30px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_40px_rgba(139,92,246,0.18)] transition-all duration-500 cursor-pointer backdrop-blur-md"
+      whileHover={{
+        y: -8,
+        scale: 1.015,
+        transition: { duration: 0.35, ease: "easeOut" }
+      }}
+      className="group relative flex flex-col bg-[#20202A]/90 rounded-2xl overflow-hidden border border-white/[0.08] hover:border-violet-500/50 shadow-[0_8px_30px_rgba(0,0,0,0.4)] hover:shadow-[0_16px_45px_rgba(139,92,246,0.22)] transition-colors duration-500 cursor-pointer backdrop-blur-md"
       onClick={() => onSelect && onSelect(member)}
     >
-      {/* Top Ambient Highlight on Card Hover */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:via-violet-500 transition-all duration-500" />
+      {/* Top Ambient Glow Highlight on Card Hover */}
+      <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:via-[#8B5CF6] transition-all duration-500" />
 
       {/* Portrait Container */}
       <div className="relative w-full aspect-[4/5] bg-[#191920] overflow-hidden">
@@ -30,7 +36,7 @@ export default function MemberCard({ member, onSelect }) {
           src={image}
           alt={name}
           loading="lazy"
-          className="w-full h-full object-cover object-top sm:object-center transition-transform duration-700 ease-out group-hover:scale-105"
+          className="w-full h-full object-cover object-top sm:object-center transition-transform duration-700 ease-out group-hover:scale-106"
         />
 
         {/* Futuristic Node Badge */}
@@ -46,7 +52,7 @@ export default function MemberCard({ member, onSelect }) {
         )}
 
         {/* Subtle Cyber Gradient Overlay on hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#101014] via-[#101014]/30 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#101014] via-[#101014]/30 to-transparent opacity-60 group-hover:opacity-35 transition-opacity duration-300 pointer-events-none" />
       </div>
 
       {/* Member Details */}
@@ -56,7 +62,7 @@ export default function MemberCard({ member, onSelect }) {
             <span className="text-[10px] font-mono uppercase tracking-[0.2em] font-semibold text-[#8B5CF6]">
               {department || "Core Team"}
             </span>
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/60 group-hover:bg-[#22D3EE] transition-colors" />
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/60 group-hover:bg-[#22D3EE] group-hover:scale-125 transition-all duration-300" />
           </div>
 
           <h3 className="text-lg sm:text-xl font-bold text-[#F5F5F7] tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-violet-200 group-hover:to-cyan-300 transition-all duration-300">
@@ -70,7 +76,7 @@ export default function MemberCard({ member, onSelect }) {
 
         {/* Bottom Metadata & View Affordance */}
         <div className="mt-4 pt-3.5 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
-          <span className="text-[#22D3EE] uppercase tracking-wider opacity-75 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+          <span className="text-[#22D3EE] uppercase tracking-wider opacity-75 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 group-hover:translate-x-1 duration-300">
             Inspect <span>→</span>
           </span>
           <span className="text-[#A1A1AA]/60 text-[10px]">

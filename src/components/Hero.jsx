@@ -1,36 +1,64 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Hero({ teamInfo }) {
   const { name, tagline, subtitle, logo } = teamInfo;
+  const containerRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Parallax and fade transforms as user scrolls down
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, -90]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.93]);
+  const ringScale = useTransform(scrollYProgress, [0, 1], [1, 1.35]);
+  const ringRotate = useTransform(scrollYProgress, [0, 1], [0, 30]);
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-24 pb-16 overflow-hidden">
-      {/* Central Ambient Lighting & Subtle Concentric Rings */}
+    <section
+      ref={containerRef}
+      className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-24 pb-16 overflow-hidden"
+    >
+      {/* Central Ambient Lighting & Dynamic Parallax Rings */}
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center -z-10">
-        <div className="w-[500px] h-[500px] sm:w-[700px] sm:h-[700px] rounded-full bg-gradient-radial from-[#8B5CF6]/15 via-[#3B82F6]/5 to-transparent blur-3xl animate-pulse-slow" />
+        <motion.div
+          style={{ scale: ringScale }}
+          className="w-[500px] h-[500px] sm:w-[700px] sm:h-[700px] rounded-full bg-gradient-radial from-[#8B5CF6]/15 via-[#3B82F6]/5 to-transparent blur-3xl"
+        />
         
-        {/* Subtle Decorative Rings */}
-        <div className="absolute w-[440px] h-[440px] sm:w-[620px] sm:h-[620px] rounded-full border border-violet-500/10" />
-        <div className="absolute w-[580px] h-[580px] sm:w-[820px] sm:h-[820px] rounded-full border border-dashed border-cyan-400/10 animate-[spin_120s_linear_infinite]" />
+        {/* Parallax Concentric Rings */}
+        <motion.div
+          style={{ scale: ringScale }}
+          className="absolute w-[440px] h-[440px] sm:w-[620px] sm:h-[620px] rounded-full border border-violet-500/10"
+        />
+        <motion.div
+          style={{ scale: ringScale, rotate: ringRotate }}
+          className="absolute w-[580px] h-[580px] sm:w-[820px] sm:h-[820px] rounded-full border border-dashed border-cyan-400/10"
+        />
       </div>
 
-      <div className="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10">
-        {/* Team Logo Container */}
+      <motion.div
+        style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
+        className="max-w-4xl mx-auto flex flex-col items-center text-center relative z-10"
+      >
+        {/* Team Logo Container with Soft Floating Physics */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.85, y: 15 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{
-            duration: 1.1,
+            duration: 1.2,
             ease: [0.16, 1, 0.3, 1],
           }}
           className="relative mb-8 group"
         >
-          {/* Subtle ambient glow behind logo */}
-          <div className="absolute -inset-3 rounded-3xl bg-gradient-to-r from-[#8B5CF6]/30 via-[#3B82F6]/20 to-[#22D3EE]/30 blur-xl opacity-60 group-hover:opacity-90 transition-opacity duration-700" />
+          {/* Ambient Glow */}
+          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-[#8B5CF6]/35 via-[#3B82F6]/25 to-[#22D3EE]/35 blur-2xl opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
 
           {/* Logo Crest Box */}
-          <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-2xl p-1 bg-gradient-to-b from-white/15 to-white/0 shadow-2xl backdrop-blur-md">
+          <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 rounded-2xl p-1 bg-gradient-to-b from-white/20 via-white/5 to-transparent shadow-2xl backdrop-blur-md">
             <div className="w-full h-full rounded-[14px] bg-[#191920] border border-white/10 flex items-center justify-center p-3 relative overflow-hidden group-hover:border-violet-500/40 transition-colors duration-500">
               <img
                 src={logo}
@@ -43,7 +71,7 @@ export default function Hero({ teamInfo }) {
 
         {/* Group Name as Main Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 22 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.9,
@@ -58,7 +86,7 @@ export default function Hero({ teamInfo }) {
             </span>
           </h1>
 
-          {/* Subtle Gradient Accent Hairline */}
+          {/* Gradient Accent Hairline */}
           <div className="h-[2px] w-28 mx-auto bg-gradient-to-r from-transparent via-[#8B5CF6] to-transparent my-4 opacity-80" />
         </motion.div>
 
@@ -89,10 +117,11 @@ export default function Hero({ teamInfo }) {
         >
           {subtitle}
         </motion.p>
-      </div>
+      </motion.div>
 
-      {/* Clean Scroll Indicator */}
+      {/* Clean Scroll Indicator that fades out as user scrolls */}
       <motion.div
+        style={{ opacity: heroOpacity }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
